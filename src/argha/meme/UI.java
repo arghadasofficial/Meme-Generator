@@ -16,15 +16,10 @@
  */
 package argha.meme;
 
-import java.awt.Color;
-
 public class UI extends javax.swing.JFrame {
 
     public UI() {
-        CanvasSettings canvasSettings = new CanvasSettings();
         initComponents();
-        canvasSettings.applyColour(canvas, Color.red);
-        canvasSettings.applySize(canvas, this.getWidth(), this.getHeight());
     }
 
     @SuppressWarnings("unchecked")
@@ -50,11 +45,11 @@ public class UI extends javax.swing.JFrame {
         canvas.setLayout(canvasLayout);
         canvasLayout.setHorizontalGroup(
             canvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 773, Short.MAX_VALUE)
+            .addGap(0, 780, Short.MAX_VALUE)
         );
         canvasLayout.setVerticalGroup(
             canvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 451, Short.MAX_VALUE)
+            .addGap(0, 533, Short.MAX_VALUE)
         );
 
         fileMenu.setText("File");
@@ -123,6 +118,7 @@ public class UI extends javax.swing.JFrame {
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new UI().setVisible(true);
             }
