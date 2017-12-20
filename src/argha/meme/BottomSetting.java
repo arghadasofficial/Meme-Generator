@@ -16,26 +16,10 @@
  */
 package argha.meme;
 
-import argha.meme.generatorCompnent.Canvas;
-import java.awt.Color;
-
 /**
  *
  * @author Argha Das
  */
-public class CanvasSettings {
-
-    private Canvas canvas;
-
-    public CanvasSettings(Canvas canvas) {
-        this.canvas = canvas;
-    }
-
-    public void applySize(float w, float h) {
-        canvas.changeSize(w, h);
-    }
-
-    public void applyColour(Color c) {
-        canvas.changeBackgroundColour(c);
-    }
+public class BottomSetting {
+    
 }
