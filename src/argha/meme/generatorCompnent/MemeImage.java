@@ -18,6 +18,12 @@ package argha.meme.generatorCompnent;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 public class MemeImage extends JComponent {
@@ -26,5 +32,18 @@ public class MemeImage extends JComponent {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g.create();
+        g2.drawImage(getImage(), 0, 0, this);
+        repaint();
     }
+
+    private BufferedImage getImage() {
+        BufferedImage image = new BufferedImage(500, 500, BufferedImage.TYPE_INT_RGB);
+        try {
+            image = ImageIO.read(new File("E:\\Entertainment\\Wallpapers\\Programming\\computerguy.jpg"));
+        } catch (IOException ex) {
+            Logger.getLogger(MemeImage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return image;
+    }
+
 }
