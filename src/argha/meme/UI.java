@@ -36,9 +36,8 @@ public class UI extends javax.swing.JFrame {
 
         jPanel7 = new javax.swing.JPanel();
         canvas1 = new argha.meme.generatorCompnent.Canvas();
+        top1 = new argha.meme.generatorCompnent.Top();
         memeImage1 = new argha.meme.generatorCompnent.MemeImage();
-        bottom1 = new argha.meme.generatorCompnent.Bottom();
-        top2 = new argha.meme.generatorCompnent.Top();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         pickImage = new javax.swing.JMenuItem();
@@ -64,14 +63,10 @@ public class UI extends javax.swing.JFrame {
         setTitle("Meme Generator");
 
         canvas1.setLayout(null);
-
-        memeImage1.add(bottom1);
-        bottom1.setBounds(0, 300, 430, 70);
-        memeImage1.add(top2);
-        top2.setBounds(0, 0, 430, 60);
-
+        canvas1.add(top1);
+        top1.setBounds(6, 0, 420, 70);
         canvas1.add(memeImage1);
-        memeImage1.setBounds(0, 0, 430, 540);
+        memeImage1.setBounds(0, 0, 430, 370);
 
         fileMenu.setText("File");
 
@@ -150,7 +145,6 @@ public class UI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutDeveloper;
-    private argha.meme.generatorCompnent.Bottom bottom1;
     private argha.meme.generatorCompnent.Canvas canvas1;
     private javax.swing.JMenuItem exitApplication;
     private javax.swing.JMenu fileMenu;
@@ -161,7 +155,7 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JMenuItem pickImage;
     private javax.swing.JMenuItem saveImage;
     private javax.swing.JPopupMenu.Separator seperator;
-    private argha.meme.generatorCompnent.Top top2;
+    private argha.meme.generatorCompnent.Top top1;
     private javax.swing.JMenuItem updateTool;
     // End of variables declaration//GEN-END:variables
 }
