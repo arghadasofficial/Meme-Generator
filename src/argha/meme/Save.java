@@ -40,6 +40,7 @@ public class Save {
      * @param component
      */
     public void setComponent(Component component) {
+        System.out.println("called - setComponent(Component component)");
         this.component = component;
     }
 
@@ -48,6 +49,8 @@ public class Save {
      * @param fileName
      */
     public void setFileName(String fileName) {
+        System.out.println("called - setFileName(String fileName)");
+        System.out.println("Output file : " + fileName);
         this.fileName = fileName;
     }
 
@@ -55,6 +58,7 @@ public class Save {
      *
      */
     public void saveComponent() {
+        System.out.println("called - saveComponent()");
         BufferedImage img = getCompoment(component);
         try {
             ImageIO.write(img, "png", new File(fileName + ".png"));

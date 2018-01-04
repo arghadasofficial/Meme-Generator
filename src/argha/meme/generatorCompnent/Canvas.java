@@ -19,30 +19,22 @@ package argha.meme.generatorCompnent;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
 import javax.swing.JPanel;
 
 public class Canvas extends JPanel {
 
     private Color color;
-    private Rectangle2D.Float background = new Rectangle2D.Float(0, 0, 100, 100);
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics = (Graphics2D) g.create();
         graphics.setColor(color);
-        graphics.fill(background);
+        setBackground(color);
     }
 
-    public void changeBackgroundColour(Color c) {
+    public void changeBackground(Color c) {
         color = c;
-        repaint();
-    }
-
-    public void changeSize(float width, float height) {
-        background.width = width;
-        background.height = height;
         repaint();
     }
 }
