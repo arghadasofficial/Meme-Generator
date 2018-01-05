@@ -14,8 +14,6 @@
 * Install it
 * Enjoy
 
-### About
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Argha Das - Developer 
-Profile : [Facebook](https://www.facebook.com/arghalvsnil)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### About Developer 
+* Argha Das [Facebook](https://www.facebook.com/arghalvsnil)
+
