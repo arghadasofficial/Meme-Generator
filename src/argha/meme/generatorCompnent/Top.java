@@ -16,28 +16,23 @@
  */
 package argha.meme.generatorCompnent;
 
+import Utils.DesignerUtil;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 
-public class Top extends JComponent implements MouseListener, MouseMotionListener {
+public class Top extends JComponent {
 
     private String text = "TOP TEXT";
     private Color fColor = Color.BLACK;
     private Color bColor = Color.GREEN;
 
-    private int x;
-    private int y;
+    DesignerUtil designer;
 
     public Top() {
-        addMouseListener(this);
-        addMouseMotionListener(this);
+        designer = new DesignerUtil(this);
     }
 
     @Override
@@ -63,44 +58,5 @@ public class Top extends JComponent implements MouseListener, MouseMotionListene
     public void changeBackground(Color c) {
         bColor = c;
         repaint();
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-        x = e.getX();
-        y = e.getY();
-        setBorder(BorderFactory.createLineBorder(Color.MAGENTA, 3));
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-        System.out.println(e.getX() + " " + e.getY());
-        e.getComponent().setLocation(e.getXOnScreen() - x, e.getYOnScreen() - y);
-        repaint();
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent e) {
-        
     }
 }

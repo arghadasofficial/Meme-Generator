@@ -17,6 +17,7 @@
 package argha.meme;
 
 import argha.util.Fullscreen;
+import javax.swing.JRootPane;
 
 public class UI extends javax.swing.JFrame {
 
