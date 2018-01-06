@@ -28,9 +28,7 @@ public class UI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        canvas1 = new argha.meme.generatorCompnent.Canvas();
-        bottom1 = new argha.meme.generatorCompnent.Bottom();
-        top2 = new argha.meme.generatorCompnent.Top();
+        designer1 = new argha.meme.generatorCompnent.Designer();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -38,11 +36,16 @@ public class UI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        canvas1.setLayout(null);
-        canvas1.add(bottom1);
-        bottom1.setBounds(20, 330, 438, 120);
-        canvas1.add(top2);
-        top2.setBounds(10, 10, 460, 120);
+        javax.swing.GroupLayout designer1Layout = new javax.swing.GroupLayout(designer1);
+        designer1.setLayout(designer1Layout);
+        designer1Layout.setHorizontalGroup(
+            designer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        designer1Layout.setVerticalGroup(
+            designer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
 
         jMenu1.setText("File");
 
@@ -62,17 +65,11 @@ public class UI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(canvas1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(designer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(canvas1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(designer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -80,7 +77,7 @@ public class UI extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         ImageUtil util = new ImageUtil();
-        canvas1.storeImage(util.scaleIt(canvas1.getWidth(), canvas1.getHeight()));
+        designer1.disableHelpers();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     public static void main(String args[]) {
@@ -104,11 +101,9 @@ public class UI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private argha.meme.generatorCompnent.Bottom bottom1;
-    private argha.meme.generatorCompnent.Canvas canvas1;
+    private argha.meme.generatorCompnent.Designer designer1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private argha.meme.generatorCompnent.Top top2;
     // End of variables declaration//GEN-END:variables
 }

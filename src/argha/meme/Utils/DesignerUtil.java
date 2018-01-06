@@ -16,26 +16,45 @@
  */
 package argha.meme.Utils;
 
-import java.awt.Color;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
+import java.awt.Rectangle;
+import java.awt.event.*;
+import javax.swing.JPanel;
 
-/**
- *
- * @author Argha Das
- */
 public class DesignerUtil implements MouseListener, MouseMotionListener, MouseWheelListener {
 
-    private int xMouse;
-    private int yMouse;
-    private JComponent component;
+    private int xTopMouse;
+    private int yTopMouse;
+    private int xBottomMouse;
+    private int yBottomMouse;
+    private JPanel component;
+    private Rectangle rectTop, rectBottom;
+    private int rectTopX, rectTopY, rectBottomX, rectBottomY;
 
-    public DesignerUtil(JComponent component) {
+    public int getRectTopX() {
+        return rectTopX;
+    }
+
+    public int getRectTopY() {
+        return rectTopY;
+    }
+
+    public int getRectBottomX() {
+        return rectBottomX;
+    }
+
+    public int getRectBottomY() {
+        return rectBottomY;
+    }
+
+    public void registerTop(Rectangle rectTop) {
+        this.rectTop = rectTop;
+    }
+
+    public void registerBottom(Rectangle rectBottom) {
+        this.rectBottom = rectBottom;
+    }
+
+    public DesignerUtil(JPanel component) {
         this.component = component;
         component.addMouseListener(this);
         component.addMouseMotionListener(this);
@@ -49,42 +68,49 @@ public class DesignerUtil implements MouseListener, MouseMotionListener, MouseWh
 
     @Override
     public void mousePressed(MouseEvent e) {
-        xMouse = e.getX();
-        yMouse = e.getY();
-        component.setBorder(BorderFactory.createLineBorder(Color.white, 1));
+        xTopMouse = rectTop.x - e.getX();
+        yTopMouse = rectTop.y - e.getY();
+
+        xBottomMouse = rectBottom.x - e.getX();
+        yBottomMouse = rectBottom.y - e.getY();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        component.setBorder(BorderFactory.createEmptyBorder());
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-        
+
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        int x = e.getXOnScreen();
-        int y = e.getYOnScreen();
-        component.setLocation(x - xMouse, y - yMouse);
+        if (rectTop.contains(e.getX(), e.getY())) {
+            rectTop.setLocation(xTopMouse + e.getX(), yTopMouse + e.getY());
+            this.rectTopX = xTopMouse + e.getX();
+            this.rectTopY = xTopMouse + e.getY();
+        }
+        if (rectBottom.contains(e.getX(), e.getY())) {
+            rectBottom.setLocation(xBottomMouse + e.getX(), yBottomMouse + e.getY());
+            this.rectBottomX = xBottomMouse + e.getX();
+            this.rectBottomY = yBottomMouse + e.getY();
+        }
+        component.repaint();
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        
-        
-    }
 
+    }
 }
