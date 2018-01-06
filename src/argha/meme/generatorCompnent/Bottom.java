@@ -16,17 +16,23 @@
  */
 package argha.meme.generatorCompnent;
 
+import argha.meme.Utils.DesignerUtil;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JComponent;
 
-public class Bottom extends JComponent{
+public class Bottom extends JComponent {
 
     private String text = "BOTTOM TEXT";
-    private Color fColor = Color.BLACK;
-    private Color bColor = Color.GREEN;
+    private Color fColor = Color.WHITE;
+
+    private DesignerUtil designer;
+    
+    public Bottom() {
+        designer = new DesignerUtil(this);
+    }
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -34,21 +40,7 @@ public class Bottom extends JComponent{
         Graphics2D g2d = (Graphics2D) g;
         Font font = new Font("Serif", Font.PLAIN, 50);
         g2d.setFont(font);
+        g2d.setPaint(fColor);
         g2d.drawString(text, 0, 50);
-    }
-
-    public void changeText(String text) {
-        this.text = text;
-        repaint();
-    }
-
-    public void changeForeground(Color c) {
-        fColor = c;
-        repaint();
-    }
-
-    public void changeBackground(Color c) {
-        bColor = c;
-        repaint();
     }
 }

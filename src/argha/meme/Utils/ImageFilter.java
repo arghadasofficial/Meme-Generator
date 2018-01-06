@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Argha Das
+ * Copyright (C) 2018 Argha Das
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,30 +14,33 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package argha.meme.generatorCompnent;
+package argha.meme.Utils;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import javax.swing.JPanel;
+import java.io.File;
+import javax.swing.filechooser.FileFilter;
 
-public class Canvas extends JPanel {
-
-    private Color color = Color.BLACK;
-    private Image image = null;
+/**
+ *
+ * @author Argha Das
+ */
+public class ImageFilter extends FileFilter {
 
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D graphics = (Graphics2D) g.create();
-        graphics.setColor(color);
-        setBackground(color);
-        graphics.drawImage(image, 0, 0, this);
+    public boolean accept(File file) {
+        if (file.isDirectory()) {
+            return true;
+        }
+        String name = file.getName();
+        if (name.matches(".*((.jpg)|(.gif)|(.png))")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public void storeImage(Image img) {
-        image = img;
-        repaint();
+    @Override
+    public String getDescription() {
+        return "Image (*.jpg, *.gif, *.png)";
     }
+
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Argha Das
+ * Copyright (C) 2018 Argha Das
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,115 +16,74 @@
  */
 package argha.meme;
 
-import argha.util.Fullscreen;
-import javax.swing.JRootPane;
+import argha.meme.Utils.ImageUtil;
 
 public class UI extends javax.swing.JFrame {
 
-    Fullscreen screen;
-    Save save;
-
     public UI() {
-        save = new Save();
         initComponents();
-        screen = new Fullscreen(this, false);
-        //screen.DoTheWorkFor();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel7 = new javax.swing.JPanel();
         canvas1 = new argha.meme.generatorCompnent.Canvas();
-        top1 = new argha.meme.generatorCompnent.Top();
-        memeImage1 = new argha.meme.generatorCompnent.MemeImage();
-        menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
-        pickImage = new javax.swing.JMenuItem();
-        saveImage = new javax.swing.JMenuItem();
-        seperator = new javax.swing.JPopupMenu.Separator();
-        exitApplication = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        updateTool = new javax.swing.JMenuItem();
-        aboutDeveloper = new javax.swing.JMenuItem();
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        bottom1 = new argha.meme.generatorCompnent.Bottom();
+        top2 = new argha.meme.generatorCompnent.Top();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Meme Generator");
+        setResizable(false);
 
         canvas1.setLayout(null);
-        canvas1.add(top1);
-        top1.setBounds(6, 0, 420, 70);
-        canvas1.add(memeImage1);
-        memeImage1.setBounds(0, 0, 430, 370);
+        canvas1.add(bottom1);
+        bottom1.setBounds(20, 330, 438, 120);
+        canvas1.add(top2);
+        top2.setBounds(10, 10, 460, 120);
 
-        fileMenu.setText("File");
+        jMenu1.setText("File");
 
-        pickImage.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        pickImage.setText("Pick Image");
-        fileMenu.add(pickImage);
-
-        saveImage.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-        saveImage.setText("Save");
-        saveImage.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem1.setText("Pick Image");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveImageActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
-        fileMenu.add(saveImage);
-        fileMenu.add(seperator);
+        jMenu1.add(jMenuItem1);
 
-        exitApplication.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
-        exitApplication.setText("Exit");
-        fileMenu.add(exitApplication);
+        jMenuBar1.add(jMenu1);
 
-        menuBar.add(fileMenu);
-
-        helpMenu.setText("Help");
-
-        updateTool.setText("Update");
-        helpMenu.add(updateTool);
-
-        aboutDeveloper.setText("About");
-        helpMenu.add(aboutDeveloper);
-
-        menuBar.add(helpMenu);
-
-        setJMenuBar(menuBar);
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(canvas1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(canvas1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveImageActionPerformed
-        save.setFileName("output");
-        save.setComponent(canvas1);
-        save.saveComponent();
-    }//GEN-LAST:event_saveImageActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ImageUtil util = new ImageUtil();
+        canvas1.storeImage(util.scaleIt(canvas1.getWidth(), canvas1.getHeight()));
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     public static void main(String args[]) {
-
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Metal".equals(info.getName())) {
@@ -145,18 +104,11 @@ public class UI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem aboutDeveloper;
+    private argha.meme.generatorCompnent.Bottom bottom1;
     private argha.meme.generatorCompnent.Canvas canvas1;
-    private javax.swing.JMenuItem exitApplication;
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu helpMenu;
-    private javax.swing.JPanel jPanel7;
-    private argha.meme.generatorCompnent.MemeImage memeImage1;
-    private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem pickImage;
-    private javax.swing.JMenuItem saveImage;
-    private javax.swing.JPopupMenu.Separator seperator;
-    private argha.meme.generatorCompnent.Top top1;
-    private javax.swing.JMenuItem updateTool;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private argha.meme.generatorCompnent.Top top2;
     // End of variables declaration//GEN-END:variables
 }

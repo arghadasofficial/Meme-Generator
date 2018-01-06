@@ -16,7 +16,7 @@
  */
 package argha.meme.generatorCompnent;
 
-import Utils.DesignerUtil;
+import argha.meme.Utils.DesignerUtil;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -26,10 +26,8 @@ import javax.swing.JComponent;
 public class Top extends JComponent {
 
     private String text = "TOP TEXT";
-    private Color fColor = Color.BLACK;
-    private Color bColor = Color.GREEN;
-
-    DesignerUtil designer;
+    private Color fColor = Color.WHITE;
+    private DesignerUtil designer;
 
     public Top() {
         designer = new DesignerUtil(this);
@@ -43,20 +41,5 @@ public class Top extends JComponent {
         g2d.setFont(font);
         g2d.setPaint(fColor);
         g2d.drawString(text, 0, 50);
-    }
-
-    public void changeText(String text) {
-        this.text = text;
-        repaint();
-    }
-
-    public void changeForeground(Color c) {
-        fColor = c;
-        repaint();
-    }
-
-    public void changeBackground(Color c) {
-        bColor = c;
-        repaint();
     }
 }
