@@ -23,31 +23,39 @@ public class UI extends javax.swing.JFrame {
 
     private ImageUtil imageUtil;
     private Save save;
+    private Properties propWindow;
+    private About aboutWindow;
 
     public UI() {
         imageUtil = new ImageUtil();
         save = new Save();
+        propWindow = new Properties(true);
+        aboutWindow = new About(true);
         initComponents();
+        propWindow.register(designer);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
         designer = new argha.meme.generatorCompnent.Designer();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        pickImg = new javax.swing.JMenuItem();
+        saveImg = new javax.swing.JMenuItem();
+        exit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        enableHelper = new javax.swing.JMenuItem();
+        disableHelper = new javax.swing.JMenuItem();
+        properties = new javax.swing.JMenuItem();
+        about = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+
+        jScrollPane1.setViewportView(jEditorPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Meme Maker v1.0");
@@ -66,29 +74,29 @@ public class UI extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMenuItem2.setText("Pick Image");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        pickImg.setText("Pick Image");
+        pickImg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                pickImgActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(pickImg);
 
-        jMenuItem1.setText("Save Image");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        saveImg.setText("Save Image");
+        saveImg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                saveImgActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(saveImg);
 
-        jMenuItem10.setText("Exit");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+        exit.setText("Exit");
+        exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
+                exitActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem10);
+        jMenu1.add(exit);
 
         jMenuBar1.add(jMenu1);
 
@@ -96,28 +104,45 @@ public class UI extends javax.swing.JFrame {
 
         jMenu4.setText("Helper");
 
-        jMenuItem8.setText("Enable");
-        jMenu4.add(jMenuItem8);
+        enableHelper.setText("Enable");
+        enableHelper.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enableHelperActionPerformed(evt);
+            }
+        });
+        jMenu4.add(enableHelper);
 
-        jMenuItem9.setText("Disable");
-        jMenu4.add(jMenuItem9);
+        disableHelper.setText("Disable");
+        disableHelper.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                disableHelperActionPerformed(evt);
+            }
+        });
+        jMenu4.add(disableHelper);
 
         jMenu2.add(jMenu4);
 
-        jMenuItem5.setText("Propertion");
-        jMenu2.add(jMenuItem5);
+        properties.setText("Properties");
+        properties.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                propertiesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(properties);
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Help");
+        about.setText("Help");
 
-        jMenuItem6.setText("Update");
-        jMenu3.add(jMenuItem6);
+        jMenuItem1.setText("About");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        about.add(jMenuItem1);
 
-        jMenuItem7.setText("About");
-        jMenu3.add(jMenuItem7);
-
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(about);
 
         setJMenuBar(jMenuBar1);
 
@@ -142,23 +167,51 @@ public class UI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void pickImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pickImgActionPerformed
         designer.storeImage(imageUtil.scaleIt(designer.getWidth(), designer.getHeight()));
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_pickImgActionPerformed
+
+    private void saveImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveImgActionPerformed
+        designer.disableHelpers();
+        String name = fileName();
+        if (!name.equalsIgnoreCase("No Input")) {
+            save.setFileName(name);
+            save.setComponent(designer);
+            save.saveComponent();
+            System.out.println("Image Saved");
+            designer.enableHelper();
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter a file name!");
+        }
+    }//GEN-LAST:event_saveImgActionPerformed
+
+    private String fileName() {
+        String fileName = JOptionPane.showInputDialog("Enter File Name");
+        if (fileName != null) {
+            return fileName;
+        }
+        return "No Input";
+    }
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_exitActionPerformed
+
+    private void enableHelperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enableHelperActionPerformed
+        designer.enableHelper();
+    }//GEN-LAST:event_enableHelperActionPerformed
+
+    private void disableHelperActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disableHelperActionPerformed
+        designer.disableHelpers();
+    }//GEN-LAST:event_disableHelperActionPerformed
+
+    private void propertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propertiesActionPerformed
+        propWindow.show();
+    }//GEN-LAST:event_propertiesActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        designer.disableHelpers();
-        String fileName = JOptionPane.showInputDialog("Enter File Name");
-        save.setFileName(fileName);
-        save.setComponent(designer);
-        save.saveComponent();
-        System.out.println("Image Saved");
-        designer.enableHelper();
+        aboutWindow.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -166,10 +219,12 @@ public class UI extends javax.swing.JFrame {
                 if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -181,19 +236,20 @@ public class UI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu about;
     private argha.meme.generatorCompnent.Designer designer;
+    private javax.swing.JMenuItem disableHelper;
+    private javax.swing.JMenuItem enableHelper;
+    private javax.swing.JMenuItem exit;
+    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem pickImg;
+    private javax.swing.JMenuItem properties;
+    private javax.swing.JMenuItem saveImg;
     // End of variables declaration//GEN-END:variables
 }

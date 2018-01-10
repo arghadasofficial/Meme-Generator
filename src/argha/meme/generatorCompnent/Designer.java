@@ -51,13 +51,13 @@ public class Designer extends JPanel {
     //Helper properties
     int topWidth, topHeight;
     int bottomWidth, bottomHeight;
-    
+
     public Designer() {
         designerUtil = new DesignerUtil(this);
         designerUtil.registerTop(top);
         designerUtil.registerBottom(bottom);
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -84,62 +84,62 @@ public class Designer extends JPanel {
         graphics.setFont(bottomFont);
         graphics.drawString(bottomText, designerUtil.getRectBottomX(), designerUtil.getRectBottomY());
     }
-    
+
     public void storeImage(Image img) {
         this.image = img;
         repaint();
     }
-    
+
     public void enableHelper() {
         top.height = topHeight;
         top.width = topWidth;
         bottom.height = bottomHeight;
         bottom.width = bottomWidth;
-        
+
         repaint();
     }
-    
+
     public void disableHelpers() {
         topWidth = top.width;
         topHeight = top.height;
-        top.height = 0;
-        top.width = 0;
+        top.height = -1;
+        top.width = -1;
         bottomWidth = bottom.width;
         bottomHeight = bottom.height;
-        bottom.height = 0;
-        bottom.width = 0;
+        bottom.height = -1;
+        bottom.width = -1;
         repaint();
     }
-    
+
     public void changeTopSize(int size) {
         this.topTextSize = size;
         repaint();
-        
+
     }
-    
+
     public void changeTopText(String text) {
         this.topText = text;
         repaint();
     }
-    
+
     public void changeTopTextColor(Color c) {
         this.topTextColor = c;
         repaint();
     }
-    
+
     public void changeBottomSize(int size) {
         bottomTextSize = size;
         repaint();
     }
-    
+
     public void changeBottomText(String text) {
         this.bottomText = text;
         repaint();
     }
-    
+
     public void changeBottomTextColor(Color c) {
         this.bottomTextColor = c;
         repaint();
     }
-    
+
 }
