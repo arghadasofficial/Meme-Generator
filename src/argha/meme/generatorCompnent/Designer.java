@@ -40,6 +40,8 @@ public class Designer extends JPanel {
     private Color topTextColor = Color.WHITE;
     private int topTextSize = 50;
     private String topText = "TOP";
+    private String topFontName = "Tahoma";
+    private String topStyle = "Plain";
 
     //Bottom Variables
     private Rectangle bottom = new Rectangle(100, 10, 50, 50);
@@ -47,7 +49,8 @@ public class Designer extends JPanel {
     private Color bottomTextColor = Color.WHITE;
     private int bottomTextSize = 50;
     private String bottomText = "BOTTOM";
-
+    private String bottomFontName = "Tahoma";
+    private String bottomStyle = "Plain";
     //Helper properties
     int topWidth, topHeight;
     int bottomWidth, bottomHeight;
@@ -72,16 +75,32 @@ public class Designer extends JPanel {
         graphics.setPaint(topColor);
         graphics.draw(top);
         graphics.setPaint(topTextColor);
-        Font topFont = new Font("Tahoma", Font.BOLD, topTextSize);
-        graphics.setFont(topFont);
+        if (topStyle.equalsIgnoreCase("Bold")) {
+            Font topFont = new Font(topFontName, Font.BOLD, topTextSize);
+            graphics.setFont(topFont);
+        } else if (topStyle.equalsIgnoreCase("Plain")) {
+            Font topFont = new Font(topFontName, Font.PLAIN, topTextSize);
+            graphics.setFont(topFont);
+        } else if (topStyle.equalsIgnoreCase("Italic")) {
+            Font topFont = new Font(topFontName, Font.ITALIC, topTextSize);
+            graphics.setFont(topFont);
+        }
         graphics.drawString(topText, designerUtil.getRectTopX(), designerUtil.getRectTopY());
 
         //Paint Bottom
         graphics.setPaint(bottomColor);
         graphics.draw(bottom);
         graphics.setPaint(bottomTextColor);
-        Font bottomFont = new Font("Tahoma", Font.BOLD, bottomTextSize);
-        graphics.setFont(bottomFont);
+        if (bottomStyle.equalsIgnoreCase("Bold")) {
+            Font bottomFont = new Font(bottomFontName, Font.BOLD, bottomTextSize);
+            graphics.setFont(bottomFont);
+        } else if (bottomStyle.equalsIgnoreCase("Plain")) {
+            Font bottomFont = new Font(bottomFontName, Font.PLAIN, bottomTextSize);
+            graphics.setFont(bottomFont);
+        } else if (bottomStyle.equalsIgnoreCase("Italic")) {
+            Font bottomFont = new Font(bottomFontName, Font.ITALIC, bottomTextSize);
+            graphics.setFont(bottomFont);
+        }
         graphics.drawString(bottomText, designerUtil.getRectBottomX(), designerUtil.getRectBottomY());
     }
 
@@ -127,6 +146,16 @@ public class Designer extends JPanel {
         repaint();
     }
 
+    public void changeTopFontName(String name) {
+        this.topFontName = name;
+        repaint();
+    }
+
+    public void changeTopFontStyle(String style) {
+        this.topStyle = style;
+        repaint();
+    }
+
     public void changeBottomSize(int size) {
         bottomTextSize = size;
         repaint();
@@ -139,6 +168,16 @@ public class Designer extends JPanel {
 
     public void changeBottomTextColor(Color c) {
         this.bottomTextColor = c;
+        repaint();
+    }
+
+    public void changeBottomFontName(String name) {
+        this.bottomFontName = name;
+        repaint();
+    }
+
+    public void changeBottomFontStyle(String style) {
+        this.bottomStyle = style;
         repaint();
     }
 

@@ -179,6 +179,8 @@ public class UI extends javax.swing.JFrame {
             save.setComponent(designer);
             save.saveComponent();
             System.out.println("Image Saved");
+            JOptionPane.showMessageDialog(this, "Image saved successfully!"
+                    + "\n Location : " + save.getLocation());
             designer.enableHelper();
         } else {
             JOptionPane.showMessageDialog(this, "Please enter a file name!");
@@ -205,13 +207,13 @@ public class UI extends javax.swing.JFrame {
         designer.disableHelpers();
     }//GEN-LAST:event_disableHelperActionPerformed
 
-    private void propertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propertiesActionPerformed
-        propWindow.show();
-    }//GEN-LAST:event_propertiesActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         aboutWindow.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void propertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propertiesActionPerformed
+        propWindow.show();
+    }//GEN-LAST:event_propertiesActionPerformed
 
     public static void main(String args[]) {
         try {

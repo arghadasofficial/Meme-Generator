@@ -34,6 +34,12 @@ public class Save {
     //
     private Component component;
     private String fileName;
+    private String location;
+    private File file;
+
+    public String getLocation() {
+        return location;
+    }
 
     /**
      *
@@ -60,11 +66,13 @@ public class Save {
     public void saveComponent() {
         System.out.println("called - saveComponent()");
         BufferedImage img = getCompoment(component);
+        file = new File(fileName + ".png");
         try {
-            ImageIO.write(img, "png", new File(fileName + ".png"));
+            ImageIO.write(img, "png", file);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        location = file.getAbsolutePath();
     }
 
     /**
