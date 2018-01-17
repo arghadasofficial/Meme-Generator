@@ -16,25 +16,17 @@
  */
 package argha.meme;
 
-import argha.meme.Utils.ImageUtil;
-import javax.swing.JOptionPane;
-
 public class UI extends javax.swing.JFrame {
-
-    private ImageUtil imageUtil;
-    private Save save;
-    private Properties propWindow;
-    private About aboutWindow;
-
+    
+    UI_Controller controller;
+    
     public UI() {
-        imageUtil = new ImageUtil();
-        save = new Save();
-        propWindow = new Properties(true);
-        aboutWindow = new About(true);
+        controller = new UI_Controller();
         initComponents();
-        propWindow.register(designer);
+        controller.registerFrame(this);
+        controller.registerDesigner(designer);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,9 +35,10 @@ public class UI extends javax.swing.JFrame {
         jEditorPane1 = new javax.swing.JEditorPane();
         designer = new argha.meme.generatorCompnent.Designer();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        saveAs = new javax.swing.JMenu();
         pickImg = new javax.swing.JMenuItem();
         saveImg = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         exit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
@@ -72,7 +65,7 @@ public class UI extends javax.swing.JFrame {
             .addGap(0, 500, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("File");
+        saveAs.setText("File");
 
         pickImg.setText("Pick Image");
         pickImg.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +73,7 @@ public class UI extends javax.swing.JFrame {
                 pickImgActionPerformed(evt);
             }
         });
-        jMenu1.add(pickImg);
+        saveAs.add(pickImg);
 
         saveImg.setText("Save Image");
         saveImg.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +81,15 @@ public class UI extends javax.swing.JFrame {
                 saveImgActionPerformed(evt);
             }
         });
-        jMenu1.add(saveImg);
+        saveAs.add(saveImg);
+
+        jMenuItem2.setText("Save As");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        saveAs.add(jMenuItem2);
 
         exit.setText("Exit");
         exit.addActionListener(new java.awt.event.ActionListener() {
@@ -96,9 +97,9 @@ public class UI extends javax.swing.JFrame {
                 exitActionPerformed(evt);
             }
         });
-        jMenu1.add(exit);
+        saveAs.add(exit);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(saveAs);
 
         jMenu2.setText("Tools");
 
@@ -168,32 +169,12 @@ public class UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pickImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pickImgActionPerformed
-        designer.storeImage(imageUtil.scaleIt(designer.getWidth(), designer.getHeight()));
+        controller.pickImage();
     }//GEN-LAST:event_pickImgActionPerformed
 
     private void saveImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveImgActionPerformed
-        designer.disableHelpers();
-        String name = fileName();
-        if (!name.equalsIgnoreCase("No Input")) {
-            save.setFileName(name);
-            save.setComponent(designer);
-            save.saveComponent();
-            System.out.println("Image Saved");
-            JOptionPane.showMessageDialog(this, "Image saved successfully!"
-                    + "\n Location : " + save.getLocation());
-            designer.enableHelper();
-        } else {
-            JOptionPane.showMessageDialog(this, "Please enter a file name!");
-        }
+        controller.saveImage();
     }//GEN-LAST:event_saveImgActionPerformed
-
-    private String fileName() {
-        String fileName = JOptionPane.showInputDialog("Enter File Name");
-        if (fileName != null) {
-            return fileName;
-        }
-        return "No Input";
-    }
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         System.exit(0);
@@ -208,27 +189,31 @@ public class UI extends javax.swing.JFrame {
     }//GEN-LAST:event_disableHelperActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        aboutWindow.show();
+        //aboutWindow.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void propertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propertiesActionPerformed
-        propWindow.show();
+        //propWindow.show();
     }//GEN-LAST:event_propertiesActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        controller.saveAs();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
+                    
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(UI.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -244,14 +229,15 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JMenuItem enableHelper;
     private javax.swing.JMenuItem exit;
     private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem pickImg;
     private javax.swing.JMenuItem properties;
+    private javax.swing.JMenu saveAs;
     private javax.swing.JMenuItem saveImg;
     // End of variables declaration//GEN-END:variables
 }

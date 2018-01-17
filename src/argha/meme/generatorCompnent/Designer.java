@@ -35,7 +35,7 @@ public class Designer extends JPanel {
     private Image image = null;
 
     //Top Variables
-    private Rectangle top = new Rectangle(10, 10, 50, 50);
+    private Rectangle top = new Rectangle(172, 56, 50, 50);
     private Color topColor = Color.WHITE;
     private Color topTextColor = Color.WHITE;
     private int topTextSize = 50;
@@ -44,7 +44,7 @@ public class Designer extends JPanel {
     private String topStyle = "Plain";
 
     //Bottom Variables
-    private Rectangle bottom = new Rectangle(100, 10, 50, 50);
+    private Rectangle bottom = new Rectangle(157, 447, 50, 50);
     private Color bottomColor = Color.WHITE;
     private Color bottomTextColor = Color.WHITE;
     private int bottomTextSize = 50;
@@ -102,6 +102,7 @@ public class Designer extends JPanel {
             graphics.setFont(bottomFont);
         }
         graphics.drawString(bottomText, designerUtil.getRectBottomX(), designerUtil.getRectBottomY());
+        
     }
 
     public void storeImage(Image img) {

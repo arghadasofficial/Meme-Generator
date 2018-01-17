@@ -28,7 +28,7 @@ public class DesignerUtil implements MouseListener, MouseMotionListener, MouseWh
     private int yBottomMouse;
     private JPanel component;
     private Rectangle rectTop, rectBottom;
-    private int rectTopX, rectTopY, rectBottomX, rectBottomY;
+    private int rectTopX = 172, rectTopY = 56, rectBottomX = 157, rectBottomY = 447;
 
     public int getRectTopX() {
         return rectTopX;
@@ -77,6 +77,7 @@ public class DesignerUtil implements MouseListener, MouseMotionListener, MouseWh
 
     @Override
     public void mouseReleased(MouseEvent e) {
+
     }
 
     @Override
@@ -99,7 +100,7 @@ public class DesignerUtil implements MouseListener, MouseMotionListener, MouseWh
         if (rectTop.contains(e.getX(), e.getY())) {
             rectTop.setLocation(xTopMouse + e.getX(), yTopMouse + e.getY());
             this.rectTopX = xTopMouse + e.getX();
-            this.rectTopY = xTopMouse + e.getY();
+            this.rectTopY = yTopMouse + e.getY();
         }
         if (rectBottom.contains(e.getX(), e.getY())) {
             rectBottom.setLocation(xBottomMouse + e.getX(), yBottomMouse + e.getY());
