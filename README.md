@@ -1,11 +1,23 @@
 # Meme Generator
 
+Meme Generator/Maker is an opensource cross-platform Application for making Meme written in Java,
+It comes with a Designer tool which supports various functions, also it supports
+various Text Style.
+
  ### Features :
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-* Cross-platform Windows/Mac/Linux
-* Drag & Drop supported designer
-* Saving as .png format
-* Controls for editing
+- Designer Tool
+- Light Weight
+- Cross-Platform
+- Explore rest by yourself
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+### About
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ status - working
+ version - 1.1
+ gui designer - Argha Das
+ core programmer - Argha Das
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### How to use :
