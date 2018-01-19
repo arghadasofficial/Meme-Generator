@@ -85,7 +85,7 @@ public class Designer extends JPanel {
             Font topFont = new Font(topFontName, Font.ITALIC, topTextSize);
             graphics.setFont(topFont);
         }
-        graphics.drawString(topText, 172, 56);//designerUtil.getRectTopX(), designerUtil.getRectTopY());
+        graphics.drawString(topText, designerUtil.getRectTopX(), designerUtil.getRectTopY());
 
         //Paint Bottom
         graphics.setPaint(bottomColor);
@@ -102,7 +102,7 @@ public class Designer extends JPanel {
             graphics.setFont(bottomFont);
         }
         graphics.drawString(bottomText, designerUtil.getRectBottomX(), designerUtil.getRectBottomY());
-        
+
     }
 
     public void storeImage(Image img) {
