@@ -27,6 +27,8 @@ import javax.swing.JPanel;
 
 public class Designer extends JPanel {
 
+    Graphics2D graphics;
+
     //DesignerUtil
     private DesignerUtil designerUtil;
 
@@ -51,10 +53,12 @@ public class Designer extends JPanel {
     private String bottomText = "BOTTOM";
     private String bottomFontName = "Tahoma";
     private String bottomStyle = "Plain";
+
     //Helper properties
     int topWidth, topHeight;
     int bottomWidth, bottomHeight;
 
+    //Constructor
     public Designer() {
         designerUtil = new DesignerUtil(this);
         designerUtil.registerTop(top);
@@ -64,14 +68,19 @@ public class Designer extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D graphics = (Graphics2D) g.create();
+        graphics = (Graphics2D) g.create();
+        drawImage();
+        drawTopText();
+        drawBottomText();
+    }
 
-        //Paint Image
+    private void drawImage() {
         graphics.setColor(color);
         setBackground(color);
         graphics.drawImage(image, 0, 0, this);
+    }
 
-        //Paint Top
+    private void drawTopText() {
         graphics.setPaint(topColor);
         graphics.draw(top);
         graphics.setPaint(topTextColor);
@@ -86,8 +95,9 @@ public class Designer extends JPanel {
             graphics.setFont(topFont);
         }
         graphics.drawString(topText, designerUtil.getRectTopX(), designerUtil.getRectTopY());
+    }
 
-        //Paint Bottom
+    private void drawBottomText() {
         graphics.setPaint(bottomColor);
         graphics.draw(bottom);
         graphics.setPaint(bottomTextColor);
@@ -102,7 +112,6 @@ public class Designer extends JPanel {
             graphics.setFont(bottomFont);
         }
         graphics.drawString(bottomText, designerUtil.getRectBottomX(), designerUtil.getRectBottomY());
-
     }
 
     public void storeImage(Image img) {
