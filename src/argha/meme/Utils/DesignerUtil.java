@@ -19,6 +19,7 @@ package argha.meme.Utils;
 import java.awt.Rectangle;
 import java.awt.event.*;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 public class DesignerUtil implements MouseListener, MouseMotionListener, MouseWheelListener {
 
@@ -63,7 +64,7 @@ public class DesignerUtil implements MouseListener, MouseMotionListener, MouseWh
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        
     }
 
     @Override
